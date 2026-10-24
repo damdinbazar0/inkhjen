@@ -647,7 +647,28 @@ footer {
 .number-flames.out {
     display: none;
 }
-    </style>
+    
+/* Secret letter page */
+.secret-page{max-width:850px;margin:60px auto 95px;padding:48px 22px;text-align:center;scroll-margin-top:25px}
+.secret-page h2{font-size:clamp(32px,5vw,52px);font-weight:normal;color:#a84e62}
+.secret-envelope{display:block;position:relative;margin:45px auto 30px;width:min(320px,85vw);height:215px;border:0;background:transparent;perspective:900px;cursor:pointer}
+.secret-envelope .back{position:absolute;inset:0;background:#dfadad;border-radius:9px;box-shadow:0 18px 35px #75445030}
+.secret-envelope .flap{position:absolute;inset:0;background:#eec8c4;clip-path:polygon(0 0,100% 0,50% 62%);transform-origin:top;transition:transform 1s;z-index:3}
+.secret-envelope .front{position:absolute;inset:0;background:#e7b7b3;clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);z-index:4;pointer-events:none}
+.secret-envelope .paper{position:absolute;left:9%;width:82%;height:82%;bottom:8%;background:#fffaf2;padding:22px 12px;color:#a84e62;box-shadow:0 3px 10px #75445020;transition:transform 1.1s .35s;z-index:2;font-size:20px}
+.secret-envelope.open .flap{transform:rotateX(180deg);z-index:1}
+.secret-envelope.open .paper{transform:translateY(-90px)}
+.secret-content{display:none;max-width:710px;margin:70px auto 0;padding:clamp(22px,5vw,50px);background:#fffaf3;border:1px solid #e9d8cf;box-shadow:9px 9px 0 #f0dcd6;border-radius:7px;text-align:left}
+.secret-content.visible{display:block;animation:secret-rise 1s both}
+.secret-content h3{text-align:center;color:#a84e62;font-weight:normal;font-size:29px}
+.secret-content p{max-width:none;white-space:pre-wrap;overflow-wrap:anywhere;line-height:2;font-family:Georgia,serif;font-size:16px;color:#66504c}
+.secret-content .cipher{font-family:Georgia,serif;color:#937e79}
+.secret-controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:25px auto}
+.secret-controls button{border:1px solid #d8aab4;border-radius:30px;background:#fff4f5;color:#91475a;padding:12px 20px}
+@keyframes secret-rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.secret-envelope .paper,.secret-envelope .flap{transition:none}}
+
+</style>
 </head>
 
 <body>
@@ -687,6 +708,7 @@ footer {
                 <div class="gift-buttons">
                     <button class="primary" id="open-letter">Чамд бичсэн захиа ↗</button>
                     <button class="primary bouquet-button" id="open-bouquet">Цэцгийн баглаа 💐</button>
+                    <button class="primary bouquet-button" id="go-secret">A Secret Letter 💌</button>
                 </div>
 
                 <div class="small">
@@ -833,6 +855,21 @@ footer {
                 </button>
             </div>
         </section>
+
+<section class="secret-page" id="secret-page">
+ <div class="eyebrow">JUST BETWEEN THESE LINES · ♡</div>
+ <h2>A Secret Letter</h2>
+ <p style="margin:auto">A letter written in a secret code. Tap the envelope to open.</p>
+ <button class="secret-envelope" id="secret-envelope" aria-label="Open secret letter" aria-expanded="false">
+  <span class="back"></span><span class="paper">For you ♡</span><span class="flap"></span><span class="front"></span>
+ </button>
+ <div class="secret-content" id="secret-content">
+  <div class="eyebrow" style="text-align:center">A LETTER FOR YOU</div>
+  <h3>Only for you ♡</h3>
+  
+  <p id="secret-message" class="cipher" aria-live="polite"></p>
+ </div>
+</section>
     </main>
 
     <footer>
@@ -1053,5 +1090,25 @@ footer {
             if (event.target === bouquetModal && outside) bouquetModal.close();
         });
     </script>
+
+<script>
+(function () {
+ const coded = "S bokvvi vyfo iye. Kc k pbsoxn, kc cywoyxo S mkbo noozvi klyed, kxn wkilo ofox kc cywodrsxq wybo.\n\nOfob csxmo iye vopd Wyxqyvsk dy cdeni klbykn, S'fo wsccon iye wybo drkx S mkx ohzvksx. Xyd tecd cywodswoc, led ofobi csxqvo nki. Drobo kbo wywoxdc grox S gscr S myevn dovv iye ofobidrsxq drkd'c yx wi wsxn, led S nyx'd ofox uxyg grobo dy loqsx.\n\nKd psbcd, S qoxesxovi lovsofon S myevn gksd pyb iye. Xy wkddob ryg vyxq sd dyyu, S dryeqrd S myevn rkxnvo dro nscdkxmo lomkeco iye gobo cywoyxo gybdr gksdsxq pyb. Kxn ryxocdvi, k zkbd yp wo cdsvv lovsofoc drkd.\n\nLed vkdovi, vsddvo drsxqc rkfo loox wkusxq sd rkbnob.\n\nCywodswoc, iye bokn wi wocckqoc kxn vokfo drow yx coox. S uxyg sd wsqrd coow vsuo xydrsxq dy iye, led dy wo, sd rebdc wybo drkx S'n vsuo dy knwsd. S'w xyd kcusxq pyb iyeb kddoxdsyx ofobi comyxn. Ofox k cswzvo bokmdsyx gyevn wokx cywodrsxq dy wo. Sd'c tecd zksxpev dy poov sqxybon li cywoyxo gry wokxc cy wemr dy iye.\n\nS'fo kvcy xydsmon drkd grox Wynk sc kbyexn, yeb myxfobckdsyxc lomywo crybdob kxn cyworyg poov nscdkxd. Led grox ro scx'd drobo, ofobidrsxq coowc psxo kqksx. Wkilo S'w yfobdrsxusxq sd. Wkilo drobo'c kx ohzvkxkdsyx S nyx'd exnobcdkxn. Led S mkx'd zbodoxn sd nyocx'd kppomd wo.\n\nS yxmo dyvn iye, \"S gsvv kvgkic lo gsdr iye.\"\n\nKxn S wokxd sd. Ofobi csxqvo gybn.\n\nDrkd zbywsco rkcx'd mrkxqon. Grodrob S'w li iyeb csno kc k pbsoxn yb kc cywoyxo gry vyfoc iye sx k nsppoboxd gki, S gkxd iye dy uxyg drkd iye mkx myexd yx wi cezzybd.\n\nKxn drobo'c cywodrsxq ovco S bokvvi gkxd iye dy bowowlob.\n\nGroxofob vspo qodc nsppsmevd, groxofob cdenisxq klbykn poovc yfobgrovwsxq, groxofob iye poov vyxovi yb ohrkecdon, zvokco bowowlob drkd iye nyx'd rkfo dy pkmo ofobidrsxq kvyxo. Iye mkx dkvu dy wo klyed iyeb zbylvowc, ofox sp iye nyx'd uxyg ryg dy ohzvksx drow. Iye nyx'd kvgkic rkfo dy zbodoxn dy lo cdbyxq yb kmd vsuo ofobidrsxq sc yuki.\n\nS'vv vscdox. S'vv dbi dy exnobcdkxn. Kxn S'vv cezzybd iye sx grkdofob gki S mkx.\n\nZvokco, xofob drsxu drkd iyeb vspo scx'd gybdr vsfsxq yb drkd nsckzzokbsxq gyevn wkuo drsxqc loddob. Xy wkddob ryg nsppsmevd drsxqc lomywo, drobo kbo zoyzvo gry mkbo klyed iye kxn gkxd iye robo. Iyeb vspo wkddobc cy wemr wybo drkx kxi zbylvow iye'bo pkmsxq. Sp dryco dryeqrdc ofob lomywo yfobgrovwsxq, zvokco bokmr yed dy cywoyxo iye dbecd kxn vod drow rovz iye drbyeqr sd.\n\nS gkxd iye dy lo rkzzi, dy kmrsofo iyeb nbokwc, dy ohzobsoxmo lokedspev drsxqc, kxn dy lomywo dro zobcyx iye'fo kvgkic gkxdon dy lo.\n\nOfox sp S'w xyd dro zobcyx cdkxnsxq locsno iye sx dro pedebo, S'vv cdsvv lo qoxesxovi rkzzi dy coo iye cemmoon.\n\nLed drobo'c cywodrsxq S xoon dy lo ryxocd klyed, dyy.\n\nVkdovi, S'fo loox poovsxq vsuo S'w cvygvi vycsxq dro ryzo S yxmo rkn pyb ec dy lomywo cywodrsxq wybo. Xyd lomkeco wi poovsxqc rkfo nsckzzokbon, led lomkeco S nyx'd uxyg ryg vyxq S mkx uooz ryvnsxq yx dy cywodrsxq cy exmobdksx.\n\nCy, pyb xyg, S drsxu S'vv tecd gksd exdsv iye mywo lkmu. Led exdsv drkd nki, S'vv dbokd iye kc k pbsoxn. Xy wybo pvsbdsxq, xy wybo coxnsxq bywkxdsm boovc, xy wybo vsddvo rsxdc klyed ryg wemr S gscr go myevn lo dyqodrob.\n\nXyd lomkeco S cdyzzon mkbsxq.\n\nLed lomkeco S xoon dy cdyz voddsxq wi ryzoc rebd wo.\n\nKxn zvokco nyx'd wscexnobcdkxn drsc. S'w xyd ckisxq qyynlio, kxn S'w xyd klkxnyxsxq iye. S'w cswzvi dbisxq dy kmmozd drsxqc kc droi kbo sxcdokn yp myxcdkxdvi gscrsxq droi gobo nsppoboxd.\n\nWi poovsxqc pyb iye kxn wi gsvvsxqxocc dy cezzybd iye kbo dgy nsppoboxd drsxqc. Ofox sp dro bywkxdsm poovsxqc lodgoox ec xofob lomywo kxidrsxq wybo, drkd nyocx'd wokx S'vv cdyz mkbsxq klyed iyeb rkzzsxocc kxn govv-losxq.\n\nDrobo'c yxo drsxq S gkxd iye dy uxyg, dryeqr.\n\nS bokvvi vyfo iye. Wybo drkx iye zbylklvi bokvsjo. Kxn S wscc iye wybo drkx S ofob wkxkqo dy cki.\n\nOfobi nki. Ofobi ryeb. Cywodswoc, sd poovc vsuo ofobi comyxn.\n\nKxn wkilo drkd'c ohkmdvi gri gksdsxq rkc lomywo cy nsppsmevd. Lomkeco dro wybo S wscc iye, dro wybo S bokvsjo ryg wemr sd rebdc dy gkxd cywoyxo gry poovc cy pkb kgki.\n\nS nyx'd uxyg grkd gsvv rkzzox grox iye mywo lkmu. S nyx'd uxyg grkd go'vv wokx dy okmr ydrob li drox.\n\nLed S ryzo iye exnobcdkxn drkd xyxo yp drsc gkc ofob k qkwo dy wo.\n\nWi poovsxqc gobo bokv. Droi cdsvv kbo.\n\nKxn xy wkddob grkd rkzzoxc lodgoox ec, S ryzo iye xofob pybqod drkd iye nocobfo rkzzsxocc, usxnxocc, kxn k pedebo psvvon gsdr drsxqc gybdr vyyusxq pybgkbn dy.\n\nS ryzo iye'vv dkuo mkbo yp iyebcovp, oczomskvvi yx dro nkic grox ofobidrsxq poovc dyy rokfi.\n\nKxn sp iye ofob xoon cywoyxo dy vscdox, S'vv ny wi locd dy lo drobo.\n\nS'w tecd dbisxq dy psxn k gki dy mkbo klyed iye gsdryed vycsxq wicovp sx dro zbymocc. S bokvvi vyfo iye.";
+ const message = document.getElementById('secret-message');
+ message.textContent = coded;
+ document.getElementById('go-secret').addEventListener('click', function () {
+   document.getElementById('secret-page').scrollIntoView({behavior:'smooth'});
+ });
+ document.getElementById('secret-envelope').addEventListener('click', function () {
+   this.classList.add('open');
+   this.setAttribute('aria-expanded','true');
+   const content = document.getElementById('secret-content');
+   setTimeout(function () {
+     content.classList.add('visible');
+     content.scrollIntoView({behavior:'smooth',block:'start'});
+   }, 1100);
+ });
+})();
+</script>
 </body>
 </html>
